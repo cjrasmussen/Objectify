@@ -2,6 +2,8 @@
 
 namespace cjrasmussen\Objectify;
 
+use JsonException;
+
 class Objectify
 {
 	/**
@@ -9,7 +11,7 @@ class Objectify
 	 *
 	 * @param array $data
 	 * @return object
-	 * @throws \JsonException
+	 * @throws JsonException
 	 */
 	public static function toObject(array $data): object
 	{
@@ -23,11 +25,11 @@ class Objectify
 	/**
 	 * Convert an object into an associative array
 	 *
-	 * @param array|object $data
+	 * @param object|array $data
 	 * @return array
-	 * @throws \JsonException
+	 * @throws JsonException
 	 */
-	public static function toArray($data): array
+	public static function toArray(object|array $data): array
 	{
 		return json_decode(json_encode($data, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR);
 	}
